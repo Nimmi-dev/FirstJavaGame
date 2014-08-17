@@ -65,7 +65,7 @@ public class Frame extends JFrame {
 		if(gold != null) {hitGold();}
 		isMenu();
 		key.resetPos();
-	}
+	}//e
 	public void settingListener() {
 		if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 425 && key.mouseY < 475) {settings = null;}
 	}
