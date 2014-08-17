@@ -15,9 +15,8 @@ public class Frame extends JFrame {
 	private Player player = new Player(50,50);
 	private Displaybar bar = new Displaybar();
 	private Keyboard key = new Keyboard();
-	private Upgrades upgrades;
+	private Upgrades upgrades = new Upgrades();;
 	private Settings settings;
-	private int goldMultiplicator = 1;
 	Menu menu;
 	private Gold gold;
 	public Graphics g;
@@ -55,7 +54,7 @@ public class Frame extends JFrame {
 		bar.draw(g);
 		if(gold != null){gold.draw(g);}
 		if(menu != null){menu.draw(g);}
-		if(upgrades != null){upgrades.draw(g);}
+		if(upgrades.visible == true){upgrades.draw(g);}
 		if(settings != null){settings.draw(g);}
 	}
 	public void update(float tslf) {
@@ -71,12 +70,18 @@ public class Frame extends JFrame {
 		if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 425 && key.mouseY < 475) {settings = null;}
 	}
 	public void upgradeListener() {
-		if(key.mouseX > 440 && key.mouseX < 485 && key.mouseY > 140 && key.mouseY < 160 && bar.goldAmount >= 50) {goldMultiplicator = 2;bar.goldAmount -= 50;}
-		else if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 425 && key.mouseY < 475) {upgrades = null;}
+		if(key.mouseX > 440 && key.mouseX < 485 && key.mouseY > 140 && key.mouseY < 160 && bar.goldAmount >= upgrades.goldMultiplicator * 50) {
+			if(upgrades.goldMultiplicator < 64) {
+				bar.goldAmount -= upgrades.goldMultiplicator * 50;
+				upgrades.goldMultiplicator *= 2;
+				System.out.println("Gold Multiplicator: " + upgrades.goldMultiplicator);
+			}
+		}
+		else if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 425 && key.mouseY < 475) {upgrades.visible = false;}
 	}
 	public void menuListener() {
 		if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 125 && key.mouseY < 175) {menu = null;}
-		else if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 225 && key.mouseY < 275) {menu = null; upgrades = new Upgrades();}
+		else if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 225 && key.mouseY < 275) {menu = null; upgrades.visible = true; }
 		else if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 325 && key.mouseY < 375) {menu = null; settings = new Settings();}
 		else if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 425 && key.mouseY < 475) {System.exit(0);}
 	}
@@ -88,7 +93,7 @@ public class Frame extends JFrame {
 	public void hitGold(){
 		if((player.posx < gold.x + 50 && player.posx > gold.x)||(player.posx + 50 > gold.x && player.posx + 50 < gold.x + 50)) {
 			if((player.posy < gold.y + 50 && player.posy > gold.y)||(player.posy + 50 > gold.y && player.posy + 50 < gold.y + 50)) {
-				bar.goldAmount += goldMultiplicator;
+				bar.goldAmount += 1 * upgrades.goldMultiplicator;
 				replaceGold = new Thread(){
 					public void run(){
 						try {
