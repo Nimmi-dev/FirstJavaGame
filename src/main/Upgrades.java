@@ -41,19 +41,19 @@ public class Upgrades {
 			}
 			g2d.drawImage(goldIcon, 280, 130, 40, 40, null);
 			g2d.setFont(new Font("sans-serif", Font.BOLD, 17));
-			if(goldMultiplicator < 64) {
+			if(goldMultiplicator < 32) {
 				g2d.drawString("x" + goldMultiplicator * 2, 323, 155);
 				g2d.drawRect(440, 140, 50, 20);
-				g2d.drawImage(goldIcon, 468, 142, 15, 15, null);
+				g2d.drawImage(goldIcon, 473, 142, 15, 15, null);
 				g2d.setFont(new Font("sans-serif", Font.BOLD, 15));
 				g2d.drawString(Integer.toString(goldMultiplicator*50), 445, 155);
 			}
 			else {
-				g2d.drawString("x64", 323, 155);
+				g2d.drawString("x32", 323, 155);
 				g2d.drawRect(440, 140, 50, 20);
 				g2d.drawImage(goldIcon, 468, 142, 15, 15, null);
 				g2d.setFont(new Font("sans-serif", Font.BOLD, 15));
-				g2d.drawString("---", 445, 155);
+				g2d.drawString("----", 445, 155);
 			}
 		
 		//Back to Game

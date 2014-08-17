@@ -38,6 +38,7 @@ public class Player {
 		if(Keyboard.isKeyPressed(KeyEvent.VK_S)) {speedy = 200 * boost;}
 		if(Keyboard.isKeyPressed(KeyEvent.VK_A)) {speedx = -200 * boost;}
 		if(Keyboard.isKeyPressed(KeyEvent.VK_D)) {speedx = 200 * boost;}
+		if(Keyboard.isKeyPressed(KeyEvent.VK_C)) {Main.frame.bar.goldAmount = 9999;}
 		posx += speedx * tslf;
 		posy += speedy * tslf;
 		if(posx < 0) {posx = 0;}

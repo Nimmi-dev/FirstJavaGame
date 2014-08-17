@@ -13,7 +13,7 @@ public class Frame extends JFrame {
 	private BufferStrategy strat;
 	private BufferedImage bg;
 	private Player player = new Player(50,50);
-	private Displaybar bar = new Displaybar();
+	Displaybar bar = new Displaybar();
 	private Keyboard key = new Keyboard();
 	private Upgrades upgrades = new Upgrades();;
 	private Settings settings;
@@ -65,13 +65,13 @@ public class Frame extends JFrame {
 		if(gold != null) {hitGold();}
 		isMenu();
 		key.resetPos();
-	}//asdf
+	}
 	public void settingListener() {
 		if(key.mouseX > 275 && key.mouseX < 525 && key.mouseY > 425 && key.mouseY < 475) {settings = null;}
 	}
 	public void upgradeListener() {
 		if(key.mouseX > 440 && key.mouseX < 485 && key.mouseY > 140 && key.mouseY < 160 && bar.goldAmount >= upgrades.goldMultiplicator * 50) {
-			if(upgrades.goldMultiplicator < 64) {
+			if(upgrades.goldMultiplicator < 32) {
 				bar.goldAmount -= upgrades.goldMultiplicator * 50;
 				upgrades.goldMultiplicator *= 2;
 				System.out.println("Gold Multiplicator: " + upgrades.goldMultiplicator);
