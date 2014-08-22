@@ -21,7 +21,7 @@ public class Displaybar implements Runnable{
 	private Graphics2D g2d;
 	private BufferedImage goldIcon;
 	private BufferedImage settingsIcon;
-	
+	 
 	public Displaybar() {
 
 	}
